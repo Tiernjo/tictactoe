@@ -17,13 +17,13 @@ pub fn main_loop() {
 	let (top_mid_bool, top_mid) = ::grid::create_grid(1);
 	let (top_right_bool, top_right) = ::grid::create_grid(2);
 	// Get Mid Row of Grid
-	let mut mid_left = ::grid::mid_left();
-	let mut mid_mid = ::grid::mid_mid();
-	let mut mid_right = ::grid::mid_right();
+	let (mid_left_bool, mid_left) = ::grid::create_grid(3);
+	let (mid_mid_bool, mid_mid) = ::grid::create_grid(4);
+	let (mid_right_bool, mid_right) = ::grid::create_grid(5);
 	// Get Bot Row of Grid
-	let mut bot_left = ::grid::bot_left();
-	let mut bot_mid = ::grid::bot_mid();
-	let mut bot_right = ::grid::bot_right();
+	let (bot_left_bool, bot_left) = ::grid::create_grid(6);
+	let (bot_mid_bool, bot_mid) = ::grid::create_grid(7);
+	let (bot_right_bool, bot_right) = ::grid::create_grid(8);
 
 	while window.is_open() {
 		controls(&mut window);
