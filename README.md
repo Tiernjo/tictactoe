@@ -6,5 +6,6 @@ Learning Rust and SFML
 Game
 =========
 
-Just a simple Tic-Tac-Toe game.\n
+Just a simple Tic-Tac-Toe game.
+
 I might create a difficulty selection.
