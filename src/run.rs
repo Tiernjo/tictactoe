@@ -13,8 +13,9 @@ pub fn main_loop() {
 	// Get Window
 	let mut window = ::window::create();
 
-	// Get Lines
-	let (left_line, right_line, top_line, bottom_line) = ::grid::create_lines();
+	// Get Lines for grid and border
+	let (left_line, right_line, top_line, bottom_line) = ::grid::create_lines("grid");
+	let (left_border, right_border, top_border, bottom_border) = ::grid::create_lines("border");
 	
 	// Get Widgets
 	let mut widgets = ::widget::create();
@@ -26,6 +27,7 @@ pub fn main_loop() {
 		::control::input(&mut window);
 		show(&mut window, 
 			&left_line, &right_line, &top_line, &bottom_line,
+			&left_border, &right_border, &top_border, &bottom_border,
 			&top_left, &top_mid, &top_right,
 			&mid_left, &mid_mid, &mid_right,
 			&bot_left, &bot_mid, &bot_right);
@@ -36,6 +38,8 @@ pub fn main_loop() {
 fn show(window: &mut RenderWindow,
 	left_line: &RectangleShape, right_line: &RectangleShape, 
 	top_line: &RectangleShape, bottom_line: &RectangleShape,
+	left_border: &RectangleShape, right_border: &RectangleShape,
+	top_border: &RectangleShape, bottom_border: &RectangleShape,
 	top_left: &RectangleShape, top_mid: &RectangleShape, top_right: &RectangleShape,
 	mid_left: &RectangleShape, mid_mid: &RectangleShape, mid_right: &RectangleShape,
 	bot_left: &RectangleShape, bot_mid: &RectangleShape, bot_right: &RectangleShape) {
@@ -46,6 +50,8 @@ fn show(window: &mut RenderWindow,
 	// Draw grid_lines
 	window.draw(left_line); window.draw(right_line); 
 	window.draw(top_line); window.draw(bottom_line);
+	window.draw(left_border); window.draw(right_border);
+	window.draw(top_border); window.draw(bottom_border);
 
 	// Draw widgets
 	window.draw(top_left); window.draw(top_mid); window.draw(top_right);
