@@ -1,5 +1,5 @@
 extern mod rsfml;
-use rsfml::window::{event, Close};
+use rsfml::window::{event};
 use rsfml::graphics::{RenderWindow};
 
 pub fn input(window: &mut RenderWindow) {
