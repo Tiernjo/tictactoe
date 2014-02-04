@@ -19,7 +19,7 @@ pub fn create_lines(which:&str) -> (RectangleShape, RectangleShape, RectangleSha
 	let height:f32 = 600.0;
 
 	// Vector2f of the sizes of the lines
-	let vertical_line_size = Vector2f::new(height/3.0 * 0.10, width); let horizontal_line_size = Vector2f::new(width, height /3.0 * 0.10);
+	let mut vertical_line_size = Vector2f::new(height/3.0 * 0.10, width); let mut horizontal_line_size = Vector2f::new(width, height /3.0 * 0.10);
 
 	// Vector2f of the starting positions of lines
 	let mut left_position = Vector2f::new(0.0,0.0); let mut right_position = Vector2f::new(0.0,0.0);	
@@ -34,8 +34,10 @@ pub fn create_lines(which:&str) -> (RectangleShape, RectangleShape, RectangleSha
 	} else if which == "border" {
 		// left, top, and right work fine
 		// bottom is who knows where
-		left_position = Vector2f::new(0.0, 0.0); right_position = Vector2f::new(width - (width/3.0 * 0.10), 0.0);
+		left_position = Vector2f::new(0.0, 0.0); right_position = Vector2f::new(width - (width/3.0 * 0.05), 0.0);
 		top_position = Vector2f::new(0.0, 0.0); bottom_position = Vector2f::new(0.0 , height - (height/3.0 * 0.10));
+
+		vertical_line_size = Vector2f::new(height/3.0 * 0.05, width); let horizontal_line_size = Vector2f::new(width, height /3.0 * 0.05);
 	} else {
 
 	}

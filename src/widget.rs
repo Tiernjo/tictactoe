@@ -26,15 +26,15 @@ pub fn create() -> ~[RectangleShape] {
 	let width:f32 = 600.0;
 	let height:f32 = 600.0;
 
-	widgets_location[0].set_position2f(height/3.0 * 0.10, width/3.0 * 0.10); 
-	widgets_location[1].set_position2f( (height/3.0) + (height/3.0 * 0.05), width/3.0 * 0.10); 
-	widgets_location[2].set_position2f((width*2.0/3.0) + (width*2.0/3.0 *0.05), width/3.0 * 0.10);
-	widgets_location[3].set_position2f(height/3.0 * 0.10, (height/3.0) + (height/3.0 * 0.05)); 
-	widgets_location[4].set_position2f( (height/3.0) + (height/3.0 * 0.05), (height/3.0) + (height/3.0 * 0.05)); 
-	widgets_location[5].set_position2f((width*2.0/3.0) + (width*2.0/3.0 *0.05), (height/3.0) + (height/3.0 * 0.05));
-	widgets_location[6].set_position2f(height/3.0 * 0.10, height*2.0/3.0); 
-	widgets_location[7].set_position2f( (height/3.0) + (height/3.0 * 0.05), height*2.0/3.0); 
-	widgets_location[8].set_position2f((width*2.0/3.0) + (width*2.0/3.0 *0.05), height*2.0/3.0);
+	widgets_location[0].set_position2f(height/3.0 * 0.05, height/3.0 * 0.10); 
+	widgets_location[1].set_position2f( (width/3.0) + (width/3.0 * 0.05), height/3.0 * 0.10); 
+	widgets_location[2].set_position2f((width*2.0/3.0) + (width/3.0 * 0.10), height/3.0 * 0.10);
+	widgets_location[3].set_position2f(height/3.0 * 0.05, (height/3.0) + (height/3.0 * 0.05)); 
+	widgets_location[4].set_position2f( (width/3.0) + (width/3.0 * 0.05), (height/3.0) + (height/3.0 * 0.05)); 
+	widgets_location[5].set_position2f((width*2.0/3.0) + (width/3.0 * 0.10), (height/3.0) + (height/3.0 * 0.05));
+	widgets_location[6].set_position2f(height/3.0 * 0.05, height*2.0/3.0); 
+	widgets_location[7].set_position2f( (width/3.0) + (width/3.0 * 0.05), height*2.0/3.0); 
+	widgets_location[8].set_position2f((width*2.0/3.0) + (width/3.0 * 0.10), height*2.0/3.0);
 
 	widgets_location
 }
