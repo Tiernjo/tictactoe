@@ -15,7 +15,7 @@ impl GridLine {
 
 pub fn create_lines() -> (RectangleShape, RectangleShape, RectangleShape, RectangleShape){
 	// window width and height
-	let width:f32 = 900.0;
+	let width:f32 = 600.0;
 	let height:f32 = 600.0;
 
 	// Vector2f of the sizes of the lines

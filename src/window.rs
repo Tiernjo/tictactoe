@@ -6,7 +6,7 @@ use rsfml::graphics::{RenderWindow};
 pub fn create() -> RenderWindow{
 	// Create a window
 	let setting = ContextSettings::default();
-	let window = match RenderWindow::new(VideoMode::new_init(900, 600, 32), "Tic-Tac-Toe", Close, &setting){
+	let window = match RenderWindow::new(VideoMode::new_init(600, 600, 32), "Tic-Tac-Toe", Close, &setting){
 		Some(window) => window,
 		None => fail!("Cannot create render window!")
 	};
