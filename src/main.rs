@@ -3,6 +3,7 @@ extern mod rsfml;
 mod control;
 mod grid;
 mod run;
+mod widget;
 mod window;
 
 // Macs need rsfml to start on main thread
