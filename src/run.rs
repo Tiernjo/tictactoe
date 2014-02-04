@@ -1,41 +1,63 @@
 extern mod rsfml;
-use rsfml::graphics::{Color, RectangleShape, RenderWindow};
+use rsfml::graphics::{Color, RectangleShape, RenderWindow, Text};
 
 mod control;
 mod grid;
+mod menu;
 mod window;
 mod widget;
 
 
 // Create a main loop
 pub fn main_loop() {
-	
+	let is_playing = true;
+
 	// Get Window
 	let mut window = ::window::create();
 
+	// Create Main menu
+	let (menu, menu_text) = ::menu::create(window.get_size());
+
 	// Get Lines for grid and border
-	let (left_line, right_line, top_line, bottom_line) = ::grid::create_lines("grid");
-	let (left_border, right_border, top_border, bottom_border) = ::grid::create_lines("border");
+	let (left_line, right_line, top_line, bottom_line) = ::grid::create("grid");
+	let (left_border, right_border, top_border, bottom_border) = ::grid::create("border");
 	
 	// Get Widgets
 	let mut widgets = ::widget::create();
-	let top_left = widgets.remove(0); let top_mid = widgets.remove(0); let top_right = widgets.remove(0);
+	let mut top_left = widgets.remove(0); let mut top_mid = widgets.remove(0); let top_right = widgets.remove(0);
 	let mid_left = widgets.remove(0); let mid_mid = widgets.remove(0); let mid_right = widgets.remove(0);
 	let bot_left = widgets.remove(0); let bot_mid = widgets.remove(0); let bot_right = widgets.remove(0);
 
+	top_left.set_fill_color(&Color::blue());
+	top_mid.set_fill_color(&Color::yellow());
+
 	while window.is_open() {
 		::control::input(&mut window);
-		show(&mut window, 
-			&left_line, &right_line, &top_line, &bottom_line,
-			&left_border, &right_border, &top_border, &bottom_border,
-			&top_left, &top_mid, &top_right,
-			&mid_left, &mid_mid, &mid_right,
-			&bot_left, &bot_mid, &bot_right);
+
+		if is_playing == true {
+			show_game(&mut window, 
+				&left_line, &right_line, &top_line, &bottom_line,
+				&left_border, &right_border, &top_border, &bottom_border,
+				&top_left, &top_mid, &top_right,
+				&mid_left, &mid_mid, &mid_right,
+				&bot_left, &bot_mid, &bot_right);
+		} else {
+			show_menu(&mut window,
+				&menu, &menu_text);
+		}
 	}
 }
 
+fn show_menu(window: &mut RenderWindow,
+	menu: &RectangleShape, menu_text: &Text) {
+	
+	window.clear(&Color::red());
+	window.draw(menu); window.draw(menu_text);
+	window.display()
+}
+
 // Clear buffer, draw items, show results
-fn show(window: &mut RenderWindow,
+fn show_game(window: &mut RenderWindow,
 	left_line: &RectangleShape, right_line: &RectangleShape, 
 	top_line: &RectangleShape, bottom_line: &RectangleShape,
 	left_border: &RectangleShape, right_border: &RectangleShape,

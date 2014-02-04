@@ -2,6 +2,7 @@ extern mod native;
 extern mod rsfml;
 mod control;
 mod grid;
+mod menu;
 mod run;
 mod widget;
 mod window;

@@ -13,7 +13,7 @@ impl GridLine {
 	}
 }
 
-pub fn create_lines(which:&str) -> (RectangleShape, RectangleShape, RectangleShape, RectangleShape){
+pub fn create(which:&str) -> (RectangleShape, RectangleShape, RectangleShape, RectangleShape){
 	// window width and height
 	let width:f32 = 600.0;
 	let height:f32 = 600.0;
