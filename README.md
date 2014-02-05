@@ -6,6 +6,8 @@ Learning Rust and SFML
 Game
 =========
 
-Just a simple Tic-Tac-Toe game.
+Just a simple 2 -player Tic-Tac-Toe game.
 
-I might create a difficulty selection.
+The Numpad corresponds to the squares.
+
+rustc main.rc
