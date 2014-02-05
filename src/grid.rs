@@ -46,7 +46,7 @@ pub fn create(which:&str) -> (RectangleShape, RectangleShape, RectangleShape, Re
 	right.set_position(&right_position); right.set_size(&vertical_line_size); right.set_fill_color(&Color::black());
 	top.set_position(&top_position); top.set_size(&horizontal_line_size); top.set_fill_color(&Color::black());
 	bottom.set_position(&bottom_position); bottom.set_size(&horizontal_line_size); bottom.set_fill_color(&Color::black());
-
+	
 	(left, right, top, bottom)
 }
 

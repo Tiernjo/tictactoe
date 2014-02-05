@@ -1,5 +1,5 @@
 extern mod rsfml;
-use rsfml::graphics::RectangleShape;
+use rsfml::graphics::{FloatRect, RectangleShape};
 
 struct GridWidget;
 impl GridWidget {
@@ -13,11 +13,12 @@ impl GridWidget {
 		block
 	}
 }
-pub fn create() -> ~[RectangleShape] {
+pub fn create() -> (~[RectangleShape], ~[FloatRect]) {
 	let base = GridWidget;
 	let mut widgets_location = ~[];
+	let mut widget_bounds = ~[];
 
-	let mut i = 0;
+	let mut i:int = 0;
 	while i < 9 {
 		widgets_location.push(base.block());
 		i += 1;
@@ -36,5 +37,10 @@ pub fn create() -> ~[RectangleShape] {
 	widgets_location[7].set_position2f( (width/3.0) + (width/3.0 * 0.05), height*2.0/3.0); 
 	widgets_location[8].set_position2f((width*2.0/3.0) + (width/3.0 * 0.10), height*2.0/3.0);
 
-	widgets_location
+	let mut x:int = 0;
+	while x < 9 {
+		widget_bounds.push(widgets_location[x].get_global_bounds());
+		x += 1;
+	}
+	(widgets_location, widget_bounds)
 }

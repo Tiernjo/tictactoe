@@ -12,6 +12,8 @@ mod widget;
 // Create a main loop
 pub fn main_loop() {
 	let mut is_playing = false;
+	let mut is_blue = false;
+	let mut i:int = 0;
 
 	// Get Window
 	let mut window = ::window::create();
@@ -25,26 +27,26 @@ pub fn main_loop() {
 	let (left_border, right_border, top_border, bottom_border) = ::grid::create("border");
 	
 	// Get Widgets
-	let mut widgets = ::widget::create();
-	// Take out the elemnt 0 and make variable with it
-	// expect() is an error system, like the match Some()/None() but shorter
-	let mut top_left = widgets.remove(0).expect("tl"); let mut top_mid = widgets.remove(0).expect("tm"); let top_right = widgets.remove(0).expect("tr");
-	let mid_left = widgets.remove(0).expect("ml"); let mid_mid = widgets.remove(0).expect("mm"); let mid_right = widgets.remove(0).expect("mr");
-	let bot_left = widgets.remove(0).expect("bl"); let bot_mid = widgets.remove(0).expect("bm"); let bot_right = widgets.remove(0).expect("br");
-
-	top_left.set_fill_color(&Color::yellow());
+	let (mut widgets, widget_bounds) = ::widget::create();
+	
 
 	while window.is_open() {
-		::control::input(&mut window);
+		::control::exit(&mut window);
 
-		if is_playing == true {
+		if is_playing == true {	
+			while i < 9 {
+				let is_blue = ::control::game(i, is_blue);
+				if is_blue == true {widgets[0].set_fill_color(&Color::blue());}
+				i += 1;
+			}
+			i = 0;			
+			
 			show_game(&mut window, 
 				&left_line, &right_line, &top_line, &bottom_line,
 				&left_border, &right_border, &top_border, &bottom_border,
-				&top_left, &top_mid, &top_right,
-				&mid_left, &mid_mid, &mid_right,
-				&bot_left, &bot_mid, &bot_right);
+				&widgets);
 		} else {
+			// Show Title Menu
 			is_playing = ::control::menu(is_playing);
 			show_menu(&mut window,
 				&menu, &menu_title, &menu_option);
@@ -66,9 +68,7 @@ fn show_game(window: &mut RenderWindow,
 	top_line: &RectangleShape, bottom_line: &RectangleShape,
 	left_border: &RectangleShape, right_border: &RectangleShape,
 	top_border: &RectangleShape, bottom_border: &RectangleShape,
-	top_left: &RectangleShape, top_mid: &RectangleShape, top_right: &RectangleShape,
-	mid_left: &RectangleShape, mid_mid: &RectangleShape, mid_right: &RectangleShape,
-	bot_left: &RectangleShape, bot_mid: &RectangleShape, bot_right: &RectangleShape) {
+	widgets: &~[RectangleShape]){
 
 	// Clean out window
 	window.clear(&Color::red());
@@ -80,9 +80,9 @@ fn show_game(window: &mut RenderWindow,
 	window.draw(top_border); window.draw(bottom_border);
 
 	// Draw widgets
-	window.draw(top_left); window.draw(top_mid); window.draw(top_right);
-	window.draw(mid_left); window.draw(mid_mid); window.draw(mid_right);
-	window.draw(bot_left); window.draw(bot_mid); window.draw(bot_right);
+	window.draw(&widgets[0]);window.draw(&widgets[1]);window.draw(&widgets[2]);
+	window.draw(&widgets[3]);window.draw(&widgets[4]);window.draw(&widgets[5]);
+	window.draw(&widgets[6]);window.draw(&widgets[7]);window.draw(&widgets[8]);
 
 	// Display window
 	window.display()

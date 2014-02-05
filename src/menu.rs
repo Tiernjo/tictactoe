@@ -53,7 +53,7 @@ pub fn create(window_size:Vector2u) -> (RectangleShape, Text, Text) {
 	let option_ref_cell = RefCell::new(option_font); let option_Rc = Rc::new(option_ref_cell);
 	let mut menu_option = title_option.create_text();
 
-	// Set menut text properties
+	// Set menu text properties
 	menu_title.set_font(menu_Rc);	// assign font
 	menu_title.set_character_size(30);	// font size
 	menu_title.set_color(&Color::black());	// color
@@ -63,15 +63,15 @@ pub fn create(window_size:Vector2u) -> (RectangleShape, Text, Text) {
 	menu_title.set_origin2f(menu_half, 0.0);	// set origin on half of text width
 	menu_title.set_position2f(half_width, (menu_y/3.0) - 30.0);	// set postion half of width, third of height
 
-
-	menu_option.set_font(option_Rc);
-	menu_option.set_character_size(20);
-	menu_option.set_color(&Color::black());
-	menu_option.set_string("Press Space to start");
-	let option_size = menu_option.get_local_bounds();
-	let option_half = option_size.width/2.0;
-	menu_option.set_origin2f(option_half, 0.0);
-	menu_option.set_position2f(half_width, (menu_y/2.0) - 20.0);
+	// Set option text properties
+	menu_option.set_font(option_Rc);	// assign font
+	menu_option.set_character_size(20);	// set size
+	menu_option.set_color(&Color::black());	//color
+	menu_option.set_string("Press Space to start");	// set string
+	let option_size = menu_option.get_local_bounds();	// size of string
+	let option_half = option_size.width/2.0;	//half width of string
+	menu_option.set_origin2f(option_half, 0.0);	// transform origina at half width string
+	menu_option.set_position2f(half_width, (menu_y/2.0) - 20.0);	// half of width, half of height
 
 	(menu_window, menu_title, menu_option)
 }

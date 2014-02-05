@@ -1,8 +1,9 @@
 extern mod rsfml;
 use rsfml::window::{event, keyboard};
-use rsfml::graphics::{RenderWindow};
+use rsfml::window::mouse::MouseButton;
+use rsfml::graphics::{Color, FloatRect, RectangleShape, RenderWindow};
 
-pub fn input(window: &mut RenderWindow) {
+pub fn exit(window: &mut RenderWindow) {
 	loop {
 		match window.poll_event() {
 			event::Closed => window.close(),
@@ -19,4 +20,11 @@ pub fn menu(mut is_playing:bool) -> bool {
 		true	=>	return true,
 		false	=>	return false,
 	}
+}
+
+pub fn game(which:int, is_blue:bool) -> bool {
+	if keyboard::is_key_pressed(keyboard::S) && which == 0{
+		return !is_blue
+	}
+	is_blue
 }
