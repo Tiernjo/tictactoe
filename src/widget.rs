@@ -1,5 +1,5 @@
 extern mod rsfml;
-use rsfml::graphics::{RectangleShape};
+use rsfml::graphics::RectangleShape;
 
 struct GridWidget;
 impl GridWidget {

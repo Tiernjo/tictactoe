@@ -1,5 +1,6 @@
 extern mod native;
 extern mod rsfml;
+extern mod std;
 mod control;
 mod grid;
 mod menu;

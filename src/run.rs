@@ -1,5 +1,6 @@
 extern mod rsfml;
-use rsfml::graphics::{Color, RectangleShape, RenderWindow, Text};
+use rsfml::graphics::{Color, RectangleShape, RenderWindow};
+use rsfml::graphics::rc::Text;
 
 mod control;
 mod grid;
@@ -10,13 +11,14 @@ mod widget;
 
 // Create a main loop
 pub fn main_loop() {
-	let is_playing = true;
+	let mut is_playing = false;
 
 	// Get Window
 	let mut window = ::window::create();
 
 	// Create Main menu
-	let (menu, menu_text) = ::menu::create(window.get_size());
+	let (menu, menu_title, menu_option) = ::menu::create(window.get_size());
+	//menu_text.set_font(&menu_font);
 
 	// Get Lines for grid and border
 	let (left_line, right_line, top_line, bottom_line) = ::grid::create("grid");
@@ -24,12 +26,13 @@ pub fn main_loop() {
 	
 	// Get Widgets
 	let mut widgets = ::widget::create();
-	let mut top_left = widgets.remove(0); let mut top_mid = widgets.remove(0); let top_right = widgets.remove(0);
-	let mid_left = widgets.remove(0); let mid_mid = widgets.remove(0); let mid_right = widgets.remove(0);
-	let bot_left = widgets.remove(0); let bot_mid = widgets.remove(0); let bot_right = widgets.remove(0);
+	// Take out the elemnt 0 and make variable with it
+	// expect() is an error system, like the match Some()/None() but shorter
+	let mut top_left = widgets.remove(0).expect("tl"); let mut top_mid = widgets.remove(0).expect("tm"); let top_right = widgets.remove(0).expect("tr");
+	let mid_left = widgets.remove(0).expect("ml"); let mid_mid = widgets.remove(0).expect("mm"); let mid_right = widgets.remove(0).expect("mr");
+	let bot_left = widgets.remove(0).expect("bl"); let bot_mid = widgets.remove(0).expect("bm"); let bot_right = widgets.remove(0).expect("br");
 
-	top_left.set_fill_color(&Color::blue());
-	top_mid.set_fill_color(&Color::yellow());
+	top_left.set_fill_color(&Color::yellow());
 
 	while window.is_open() {
 		::control::input(&mut window);
@@ -42,17 +45,18 @@ pub fn main_loop() {
 				&mid_left, &mid_mid, &mid_right,
 				&bot_left, &bot_mid, &bot_right);
 		} else {
+			is_playing = ::control::menu(is_playing);
 			show_menu(&mut window,
-				&menu, &menu_text);
+				&menu, &menu_title, &menu_option);
 		}
 	}
 }
 
 fn show_menu(window: &mut RenderWindow,
-	menu: &RectangleShape, menu_text: &Text) {
+	menu: &RectangleShape, menu_text: &Text, menu_option: &Text) {
 	
 	window.clear(&Color::red());
-	window.draw(menu); window.draw(menu_text);
+	window.draw(menu); window.draw(menu_text); window.draw(menu_option);
 	window.display()
 }
 

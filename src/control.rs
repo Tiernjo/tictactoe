@@ -1,5 +1,5 @@
 extern mod rsfml;
-use rsfml::window::{event};
+use rsfml::window::{event, keyboard};
 use rsfml::graphics::{RenderWindow};
 
 pub fn input(window: &mut RenderWindow) {
@@ -9,5 +9,14 @@ pub fn input(window: &mut RenderWindow) {
 			event::NoEvent => break,
 			_ => {}
 		}
+	}
+}
+
+pub fn menu(mut is_playing:bool) -> bool {
+	if keyboard::is_key_pressed(keyboard::Space) {is_playing = true};
+
+	match is_playing {
+		true	=>	return true,
+		false	=>	return false,
 	}
 }
