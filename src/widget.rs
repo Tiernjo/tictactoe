@@ -13,10 +13,9 @@ impl GridWidget {
 		block
 	}
 }
-pub fn create() -> (~[RectangleShape], ~[FloatRect]) {
+pub fn create() -> ~[RectangleShape] {
 	let base = GridWidget;
 	let mut widgets_location = ~[];
-	let mut widget_bounds = ~[];
 
 	let mut i:int = 0;
 	while i < 9 {
@@ -37,10 +36,5 @@ pub fn create() -> (~[RectangleShape], ~[FloatRect]) {
 	widgets_location[7].set_position2f( (width/3.0) + (width/3.0 * 0.05), height*2.0/3.0); 
 	widgets_location[8].set_position2f((width*2.0/3.0) + (width/3.0 * 0.10), height*2.0/3.0);
 
-	let mut x:int = 0;
-	while x < 9 {
-		widget_bounds.push(widgets_location[x].get_global_bounds());
-		x += 1;
-	}
-	(widgets_location, widget_bounds)
+	widgets_location
 }

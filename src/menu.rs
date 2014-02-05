@@ -11,7 +11,7 @@ use std::rc::Rc;
 struct Menu;
 impl Menu {
 	fn create_block(&self) -> RectangleShape {
-		let mut block = match RectangleShape::new() {
+		let block = match RectangleShape::new() {
 			Some(block)	=>	block,
 			None()			=>	fail!(~"Error, creating button.")
 		};
@@ -37,12 +37,12 @@ impl Menu {
 pub fn create(window_size:Vector2u, top_text:&str, bot_text:&str) -> (RectangleShape, Text, Text) {
 	let menu_x = window_size.x as f32;
 	let menu_y = window_size.y as f32;
-	let menu_vec = Vector2f::new(menu_x, menu_y);
 	let half_width:f32 = 600.0/2.0;
 
 	// Create Main menu
 	let main_menu:Menu = Menu;
-	let menu_window = main_menu.create_block();	// whole window
+	let mut menu_window = main_menu.create_block();	// whole window
+	menu_window.set_size2f(menu_x, menu_y);
 	let menu_font = main_menu.create_font();	//font
 	//set up font
 	let menu_ref_cell = RefCell::new(menu_font); let menu_Rc = Rc::new(menu_ref_cell);
