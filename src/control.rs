@@ -24,9 +24,8 @@ pub fn menu(mut is_playing:bool) -> bool {
 	}
 }
 
-pub fn game(which:int, is_color_import:[bool, ..2]) -> [bool, ..2] {
+pub fn game(which:int, mut is_color:[bool, ..2]) -> [bool, ..2] {
 	let mut blue_pressed:Key; let mut yellow_pressed:Key;
-	let mut is_color = is_color_import;
 	let mut block:int;
 	// assign button pressed and what block talking about on which
 	match which {
@@ -44,12 +43,15 @@ pub fn game(which:int, is_color_import:[bool, ..2]) -> [bool, ..2] {
 
 
 	// Make blue
-	if keyboard::is_key_pressed(blue_pressed) && which == block && is_color[0] == false && is_color[1] == false {is_color = [true, false]} 
-		//if keyboard::is_key_pressed(blue_pressed) && which == block && is_blue == true && is_yellow == false{return (!is_blue, is_yellow)}
+	if keyboard::is_key_pressed(blue_pressed) && which == block && is_color[0] == false && is_color[1] == false {is_color = [true, false];} 
 	// make yellow
-	if keyboard::is_key_pressed(yellow_pressed) && which == block && is_color[1] == false && is_color[0] == false {is_color = [false, true]} 
-		//if keyboard::is_key_pressed(yellow_pressed) && which == block && is_yellow == true && is_blue == false{return (is_blue, !is_yellow)}
+	if keyboard::is_key_pressed(yellow_pressed) && which == block && is_color[1] == false && is_color[0] == false {is_color = [false, true];} 
 
 	//otherwise do nothing
 	is_color
+}
+
+pub fn over(mut is_over:bool) ->  bool {
+	if keyboard::is_key_pressed(keyboard::Space) {is_over = false};
+	is_over
 }

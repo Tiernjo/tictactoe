@@ -34,7 +34,7 @@ impl Menu {
 	}
 }
 
-pub fn create(window_size:Vector2u) -> (RectangleShape, Text, Text) {
+pub fn create(window_size:Vector2u, top_text:&str, bot_text:&str) -> (RectangleShape, Text, Text) {
 	let menu_x = window_size.x as f32;
 	let menu_y = window_size.y as f32;
 	let menu_vec = Vector2f::new(menu_x, menu_y);
@@ -57,7 +57,7 @@ pub fn create(window_size:Vector2u) -> (RectangleShape, Text, Text) {
 	menu_title.set_font(menu_Rc);	// assign font
 	menu_title.set_character_size(30);	// font size
 	menu_title.set_color(&Color::black());	// color
-	menu_title.set_string("Welcome to Tic-Tac-Toe");	// what sais
+	menu_title.set_string(top_text);	// what sais
 	let menu_title_size = menu_title.get_local_bounds();	// size of text
 	let menu_half = menu_title_size.width/2.0;	// find half of text width
 	menu_title.set_origin2f(menu_half, 0.0);	// set origin on half of text width
@@ -67,7 +67,7 @@ pub fn create(window_size:Vector2u) -> (RectangleShape, Text, Text) {
 	menu_option.set_font(option_Rc);	// assign font
 	menu_option.set_character_size(20);	// set size
 	menu_option.set_color(&Color::black());	//color
-	menu_option.set_string("Press Space to start");	// set string
+	menu_option.set_string(bot_text);	// set string
 	let option_size = menu_option.get_local_bounds();	// size of string
 	let option_half = option_size.width/2.0;	//half width of string
 	menu_option.set_origin2f(option_half, 0.0);	// transform origina at half width string
