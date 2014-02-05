@@ -12,7 +12,8 @@ mod widget;
 // Create a main loop
 pub fn main_loop() {
 	let mut is_playing = false;
-	let mut is_blue = false;
+	let (is_blue, is_yellow) = (false, false);
+	let mut is_color = [is_blue, is_yellow];
 	let mut i:int = 0;
 
 	// Get Window
@@ -27,20 +28,23 @@ pub fn main_loop() {
 	let (left_border, right_border, top_border, bottom_border) = ::grid::create("border");
 	
 	// Get Widgets
-	let (mut widgets, widget_bounds) = ::widget::create();
-	
+	let (mut widgets, widget_bounds) = ::widget::create();	
 
 	while window.is_open() {
 		::control::exit(&mut window);
 
 		if is_playing == true {	
+			// Run through widgets
 			while i < 9 {
-				let is_blue = ::control::game(i, is_blue);
-				if is_blue == true {widgets[0].set_fill_color(&Color::blue());}
+				is_color = ::control::game(i, is_color);
+				if is_color[0] == true && is_color[1] == false {widgets[i].set_fill_color(&Color::blue());}	// if blue, make blue
+				else if is_color[1] == true && is_color[0] == false{widgets[i].set_fill_color(&Color::yellow());}	//or if yellow, make yellow
+				is_color = [is_blue, is_yellow];	// reset is_color to original values
 				i += 1;
 			}
+
 			i = 0;			
-			
+
 			show_game(&mut window, 
 				&left_line, &right_line, &top_line, &bottom_line,
 				&left_border, &right_border, &top_border, &bottom_border,
